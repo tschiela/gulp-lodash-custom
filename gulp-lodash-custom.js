@@ -16,6 +16,7 @@ function isLodashMethod(methodName) {
 module.exports = function (options) {
     var defaults = {
         forceMethods: [],
+        ignoreMethods: [],
         target: 'lodash-custom.min.js'
     };
 
@@ -24,7 +25,7 @@ module.exports = function (options) {
         defaults.lodashCli = require.resolve('lodash-cli/' + lodashBin);
     }
 
-    var settings = _.extend({}, defaults, options);
+    var settings = _.defaults(options, defaults);
     var lodashRegEx = new RegExp(/_\.(\w*)\(/g);
 
     if (settings && settings.forceMethods) {
@@ -36,23 +37,25 @@ module.exports = function (options) {
     }
 
     return through.obj(function (file, encoding, callback) {
-        if (file.isBuffer()) {
-            this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
-            return callback();
-        } else if (!file.isStream()) {
-            this.emit('error', new PluginError(PLUGIN_NAME, 'Only Streams are supported!'));
+        if (!file.isBuffer()) {
+            this.emit('error', new PluginError(PLUGIN_NAME, 'Only Buffers are supported!'));
             return callback();
         } else {
             var content = file.contents.toString();
-            var matches = lodashRegEx.exec(content);
+            var matches;
 
-            if (matches && matches.length === 2) {
-                var method = matches[1];
+            do {
+                matches = lodashRegEx.exec(content);
 
-                if (isLodashMethod(method)) {
-                    usedLodashMethods[method] = 1;
+                if (matches && matches.length === 2) {
+                    var method = matches[1];
+
+                    if (settings.ignoreMethods.indexOf(method) === -1 && isLodashMethod(method)) {
+                        usedLodashMethods[method] = 1;
+                    }
                 }
-            }
+
+            } while(matches)
 
             this.push(file);
 

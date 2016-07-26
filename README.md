@@ -21,7 +21,7 @@ var config = {
 };
 
 gulp.task('lodash-custom', function () {
-    return gulp.src(path.join(config.src, 'js', '**', '*.js'), { buffer: false })
+    return gulp.src(path.join(config.src, 'js', '**', '*.js'))
         .pipe(customLodash({target: path.join(config.src, 'tmp', 'lodash-custom.js')}));
 });
 
@@ -41,6 +41,11 @@ gulp.task('build', function (callback) {
 ### forceMethods
 * `Array`
 * force to include lodash methods, event if they are not found in the code base
+* Default: `[]`
+
+### ignoreMethods
+* `Array`
+* exclude methods of build
 * Default: `[]`
 
 ### target
