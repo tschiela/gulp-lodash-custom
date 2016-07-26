@@ -1,24 +1,26 @@
 {
-  "name": "gulp-lodash-custom",
-  "version": "0.0.1",
-  "description": "gulp tasks that search for used lodash methodsand do custom build of lodash",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tschiela/gulp-lodash-custom.git"
-  },
-  "keywords": [
-    "gulp",
-    "lodash"
-  ],
-  "author": "Thomas Schiela",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tschiela/gulp-lodash-custom/issues"
-  },
-  "homepage": "https://github.com/tschiela/gulp-lodash-custom#readme",
-  "dependencies": {
-    "gulp-util": "^3.0.7",
-    "lodash": "^4.13.1",
-    "lodash-cli": "^4.13.1"
-  }
+    "name": "gulp-lodash-custom",
+    "version": "0.0.2",
+    "description": "gulp tasks that search for used lodash methodsand do custom build of lodash",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tschiela/gulp-lodash-custom.git"
+    },
+    "keywords": [
+        "gulp",
+        "lodash"
+    ],
+    "main": "gulp-lodash-custom.js",
+    "author": "Thomas Schiela",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/tschiela/gulp-lodash-custom/issues"
+    },
+    "homepage": "https://github.com/tschiela/gulp-lodash-custom#readme",
+    "dependencies": {
+        "gulp-util": "^3.0.7",
+        "lodash": "^4.13.1",
+        "lodash-cli": "^4.13.1",
+        "through2": "^2.0.1"
+    }
 }

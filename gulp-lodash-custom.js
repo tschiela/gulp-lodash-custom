@@ -55,7 +55,7 @@ module.exports = function (options) {
             }
 
             this.push(file);
-            
+
             callback();
         }
     }, function (callback) {
