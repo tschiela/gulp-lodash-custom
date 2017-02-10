@@ -68,9 +68,9 @@ module.exports = function (options) {
 
         gutil.log('starting lodash csutom build with following methods: ' + methods);
 
-        execLodashCli.stdout.on('data', function (data) {
-            gutil.log(data);
-        });
+//         execLodashCli.stdout.on('data', function (data) {
+//             gutil.log(data);
+//         });
 
         execLodashCli.stderr.on('data', function (error) {
             callback(error);
