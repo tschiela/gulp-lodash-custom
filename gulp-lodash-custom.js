@@ -26,7 +26,7 @@ module.exports = function (options) {
     }
 
     var settings = _.defaults(options, defaults);
-    var lodashRegEx = new RegExp(/_\.(\w*)\(/g);
+    var lodashRegEx = new RegExp(/_\.\w*\s*\(/g);
 
     if (settings && settings.forceMethods) {
         settings.forceMethods.forEach(function (method) {
@@ -67,10 +67,6 @@ module.exports = function (options) {
         var execLodashCli = exec(command);
 
         gutil.log('starting lodash csutom build with following methods: ' + methods);
-
-        execLodashCli.stdout.on('data', function (data) {
-            gutil.log(data);
-        });
 
         execLodashCli.stderr.on('data', function (error) {
             callback(error);
