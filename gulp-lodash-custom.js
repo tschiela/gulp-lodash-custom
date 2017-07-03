@@ -26,7 +26,7 @@ module.exports = function (options) {
     }
 
     var settings = _.defaults(options, defaults);
-    var lodashRegEx = new RegExp(/_\.(\w*)\(/g);
+    var lodashRegEx = new RegExp(/_\.\w*\s*\(/g);
 
     if (settings && settings.forceMethods) {
         settings.forceMethods.forEach(function (method) {
